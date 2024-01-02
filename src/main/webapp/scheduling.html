@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Scheduling </title>
+<link rel="stylesheet" href="homepage.css">
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<style type="text/css">
+form { 
+	align: center;
+	height: 460px;
+	width: 460px;
+	box-shadow: 0px 10px 10px black;
+	border-radius: 20px;
+	margin:auto;
+}
+table{
+	margin:auto;
+}
+input {
+
+	height: 30px;
+	width: 200px;
+	text-align: center;
+	font-weight: bold;
+	font-size: 20px;
+	margin: auto;
+	border-radius: 8px;
+	margin: 10px;
+}
+button , #s1, #s2{
+
+	height: 30px;
+	width: 90px;
+	background-color: lime;
+	font-weight: bold;
+	font-size: 15px; 
+	border-radius: 5px;
+	margin: auto;
+}
+</style>
+</head>
+<body>
+<div>
+		<header>
+		<div class = "user" > <a href="#"><img src="images/user.png">userName</a></div>
+        <h1>Zettamine Labs Pvt Ltd</h1>
+		<nav>
+            <ul>
+               <li><a href="homepage.html">Home</a></li>
+                <li><a href="skills.jsp">Add Skill</a></li>
+                <li><a href="applicant.html">Applicants</a></li>
+                <li><a href="interview.html">Interviewers</a></li>
+                <li><a href="interviewSchedule.html">Interview Details</a></li>
+                <li><a href="scheduling.html">Schedule</a></li>
+                <li><a href="logout.html">Logout</a></li>
+            </ul>
+        </nav>
+        </header>
+	</div>
+	<div>	
+	<form action="schedule1" method="post">
+	<h2 style="padding-top: 20px; margin-left: 100px;">Schedule Interview</h2>
+	
+			<table>
+				<tr>
+					<th><label>Enter candidate Id:   </label></th>
+					<td><input placeholder="Enter candidate Id" name ="cId" required onblur="fetchData(this.value)"></td>
+				</tr>
+				<tr>
+					<th></th>
+					<th><button onclick="fetchData()">Submit</button></th>
+				</tr>
+				<tr>
+					<th><label>Enter Interviewer Id: </label></th>
+					<td><input placeholder="Enter Interviewer Id "></td>
+				</tr>
+				<tr>
+					<th><label>Enter Recruiter Id:  </label></th>
+					<td><input placeholder="Enter recruiter Id"><br></td>
+				</tr>
+				<tr>
+					<th><label>Enter Date:  </label></th>
+					<td><input placeholder="Enter Date" type="Date"></td>
+				</tr>
+				<tr>
+					<th><label>Enter Time: </label></th>
+					<td><input placeholder="Enter Time" type="Time"></td>
+				</tr>
+				<tr>
+					<th>
+					<input type="submit" value="schedule" id="s1" > 
+					</th>
+					<th>
+					<input type="reset" value="clear" id="s2">
+					</th>
+				</tr>
+			</table>
+			<br>
+			<!-- Status: <input type="checkbox"><br> -->	
+	</form>
+	
+	</div>
+	<hr>
+		<div id="allinterviewers">
+		
+		</div>
+	<script>
+        function fetchData(id) {
+        	alert(id);
+            var xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function() {
+            	document.getElementById("allinterviewers").innerHTML = this.responseText;
+               };
+            xhttp.open('', 'schedule2', true);
+            xhttp.send();
+        }
+        
+        function isDisable(){
+        	var s1 =document.getElementById("s1");
+        	s1.removeAttribute(disabled, true);
+        }
+    </script>
+</body>
+</html>

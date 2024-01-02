@@ -1,0 +1,89 @@
+#main{
+    height: 130px;
+    width: 100%;
+    background-color: darkgray;
+    display: flex;
+}
+#sub1 {
+    height: 80px;
+    width: 80px;
+    background-color: darkgray;
+    margin-top: 10px;
+    margin-left: 80px;
+}
+#img1{
+    height: 100%;
+    width: 100%;
+    background-color: darkgray;
+    margin: auto;
+}
+#sub2{
+    height: 100px;
+    width: 300px;
+    background-color: darkgray;
+    margin-left: 450px;
+}
+#sub3{
+    height: 40px;
+    width: 100px;
+    background-color: darkgray;
+    padding-top: 40px;
+    margin-left: 350px;
+}
+#zetta{
+    font-size: 40px;
+    font-weight: bold;
+    color: chocolate;
+    -webkit-text-stroke: 2px black;
+    text-shadow: 10px 10px 10px black;
+}
+#logout{
+    height: 30px;
+    width: 90px;
+    background-color: orange;
+    font-size: 20px;
+    font-weight: bold;
+    border-radius: 8px;
+}
+#logout:hover{
+	height: 30px;
+    width: 90px;
+    background-color: red;
+    font-size: 20px;
+    font-weight: bold;
+    border-radius: 8px;
+}
+#main2{
+    background-color: darkslategrey;
+    color: white;
+    height: 80px;
+    margin-bottom: -20px;
+}
+#dash{
+    height: 100%;
+    margin: auto;
+}
+#main3, #ul1{
+    display: flex;
+    list-style-type: none;
+    background-color: darkslategray;
+    padding-top: 20px;
+}
+.a1{
+    font-size: 30px;
+    font-weight: bold;
+    color: black;
+    text-decoration: none;
+    text-align: center;
+    margin: auto;
+}
+.l1{
+    height: 45px;
+    width: 170px;
+    background-color: lightblue;
+    margin-left: 100px;
+    margin-right: 100px;
+    border-radius: 15px;
+    text-align: center;
+    margin: auto;
+}

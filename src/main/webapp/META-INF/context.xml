@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<context>
+	<Resource name="jdbc/PostgreSQL" 
+		auth="Container"
+		type="javax.sql.DataSource" 
+		username="postgres" 
+		password="12345"
+		driverClassName="org.postgresql.Driver"
+		url="jdbc:postgresql://localhost:5432/db_zettamine" 
+		maxActive="20"
+		maxIdle="10" 
+		maxWait="-1" />
+</context>
