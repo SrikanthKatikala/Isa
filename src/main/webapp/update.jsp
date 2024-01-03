@@ -16,12 +16,6 @@
 	src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.18/jquery-ui.min.js"></script>
 
 <title>ZETTAMINT</title>
-
-<script>
-	$(function() {
-		$('input[name=dob]').datepicker();
-	});
-</script>
  <style>
         body {
             font-family: Arial, sans-serif;
@@ -82,9 +76,9 @@
 </head>
 <body>
 	<div>
-		<h1>  Applicant<c:out value="${hlabel}" />
+		<h1>  Applicant 
 		</h1>
-		<form method="post" action="applicant" name="frmAddUser">
+		<form method="post" action="applicant">
 		<h2>Applicant </h2>
 		
 			<table style="width: 500px">
@@ -133,11 +127,12 @@
 					<td align="center"><input type="reset" value="Clear" class="a1"></td>
 				</tr>
 				<tr>
-					<td colspan=2><a href="homepage.html" style="margin-left: 210px"><button>Back</button></a></td>
+					
 				</tr>
 			</table>
 			
 		</form>
+		<td colspan=2><a href="homepage.html" style="margin-left: 210px;margin-top:50px;"><button>Home</button></a></td>
 	</div>
 </body>
 </html>

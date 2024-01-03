@@ -44,7 +44,7 @@
 <body>
 <div>
 		<header>
-		<div class = "user" > <a href="#"><img src="images/user.png">userName</a></div>
+		
         <h1>Zettamine Labs Pvt Ltd</h1>
 		<nav>
             <ul>
@@ -53,15 +53,72 @@
                 <li><a href="applicant.html">Applicants</a></li>
                 <li><a href="interview.html">Interviewers</a></li>
                 <li><a href="interviewSchedule.html">Interview Details</a></li>
-                <li><a href="scheduling.html">Schedule</a></li>
+                <li><a href="scheduling.jsp">Schedule</a></li>
                 <li><a href="logout.html">Logout</a></li>
             </ul>
         </nav>
         </header>
 	</div>
+	
 	<h1 id="heading">Interviewer</h1>
+	<label>Interviewer By Id: </label><span>*</span>
+	<input id="search" placeholder="search interviewer by id" name="interviewerId" onblur="getInterviewerById(this.value)"><br>
+	<hr>
 	<form action="interviewer" method="get">
-		<input type="submit" id="submit">
+		<input type="submit" value="View All" id="submit">
 	</form>
+	<hr>
+	<div>
+		<table border="1">
+		<tr>
+			<th>Id</th>
+			<td><span id="target1"></span></td>
+		</tr>
+		<tr>
+			<th>Name</th>
+			<td><span id="target2"></span></td>
+		</tr>
+		<tr>
+			<th>Email</th>
+			<td><span id="target3"></span></td>
+		</tr>
+		<tr>
+			<th>Skill</th>
+			<td><span id="target4"></span></td>
+		</tr>
+	</table>
+	</div>
+	<script type="text/javascript">
+		var xhr;
+		function getInterviewerById(id){
+			xhr = new XMLHttpRequest();
+			xhr.open("GET","searchInterviewer?interviewerId="+id, true);
+			xhr.onreadystatechange = stateChanged;
+			xhr.send();
+		}
+		function stateChanged(){
+			var interId = 'No Match Found'
+			var interName = ''
+			var interEmail =''
+			var interSkill =''
+			
+			if(xhr.readyState == 4 && xhr.status==200){
+				var resp = xhr.responseText;
+				console.log(resp);
+				if(resp.length > 0){
+					var obj = JSON.parse(resp);
+					console.log(obj);
+					interId = obj.interviewerId;
+					interName = obj.interviewerName;	
+					interEmail = obj.email;
+					interSkill=obj.skill;
+				}		
+			}
+			document.getElementById("target1").innerHTML = interId;
+			document.getElementById("target2").innerHTML = interName;
+			document.getElementById("target3").innerHTML = interEmail;
+			document.getElementById("target4").innerHTML = interSkill;
+		}
+	</script>
 </body>
 </html>

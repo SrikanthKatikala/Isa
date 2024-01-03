@@ -1,3 +1,4 @@
+<%@page import="com.zettamine.isa.dto.Recruiter"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
 <html>
@@ -8,7 +9,11 @@
 </head>
 <body>
 	<header>
-		<div class = "user" > <a href="#"><img src="images/user.png">userName</a></div>
+	<% Recruiter rec = (Recruiter) request.getAttribute("recr"); %>
+		<div class = "user" > <a href="homepage.html"><img src="images/recruiter.jpeg"><%= rec.getRecruiterName() %></a>
+		<h3><%=rec.getRecruiterId() %></h3>
+		</div>
+		
         <h1>Zettamine Labs Pvt Ltd</h1>
         <nav>
             <ul>

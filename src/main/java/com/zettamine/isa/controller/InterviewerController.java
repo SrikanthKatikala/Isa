@@ -49,35 +49,30 @@ public class InterviewerController extends HttpServlet {
 	  interviewer.setInterviewerId(id);
 	  criteria.setInterviewerId(id);
 	  List<Interviewer> list = isaService.getBySearchCriteria(criteria);
-	  System.out.println(list);
+	 
 	  interviewer = list.get(0);
-	  System.out.println(interviewer);
 	  isaService.update(interviewer, iId);
-	  request.setAttribute("intrvr", interviewer);
-	  request.setAttribute("label","Update Interviewer");
-	  request.setAttribute("hlabel", "Edit Interviewer");
-	 }  
+	  request.setAttribute("intrvr", list.get(0));
+	 }
 	 
 	 else if(action.equalsIgnoreCase("delete"))
 	 {
 		 interviewer = new Interviewer();
 		 System.out.println(request.getParameter("interviewerId"));
 		 Integer id = Integer.parseInt(request.getParameter("interviewerId"));
-		 System.out.println(interviewer);
 		 interviewer.setInterviewerId(id);
-		 System.out.println(interviewer);
+
 		 isaService.delete(interviewer);
 		 forward ="/interviewer.jsp";
 		 request.setAttribute("intrvr", isaService.getAll());
 	 }
 	 else if(action.equalsIgnoreCase("insert"))
 	 {
-	  request.setAttribute("hlabel", "Add Interviewer");
 	  forward="/interviewerView.jsp";
 	 }
 	 
 	 RequestDispatcher view = request.getRequestDispatcher(forward);
-	 view.forward(request, response);	
+	 view.include(request, response);	
 	}
 		
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
@@ -87,11 +82,22 @@ public class InterviewerController extends HttpServlet {
 		interviewer.setInterviewerName(request.getParameter("name"));
 		interviewer.setEmail(request.getParameter("email"));
 		interviewer.setPhoneNumber(request.getParameter("mobile"));
-		interviewer.setPrimarySkill(Integer.parseInt(request.getParameter("skill")));	 
-		isaService.save(interviewer);
-	 RequestDispatcher view = request.getRequestDispatcher("/interviewer.jsp");
-	 request.setAttribute("intrvr", isaService.getAll());
-	 view.forward(request, response);
+		interviewer.setPrimarySkill(Integer.parseInt(request.getParameter("skill")));
+		String id = request.getParameter("interviewerId");
+		if (id==null || id.isEmpty()) {
+			isaService.save(interviewer);  
+		}else {
+			SearchCriteriaImpl criteria = new SearchCriteriaImpl();
+			  Integer Iid = Integer.parseInt(id);
+			  interviewer.setInterviewerId(Iid);
+			  isaService.update(interviewer, id);
+			  criteria.setInterviewerId(Iid);
+			  List<Interviewer> list = isaService.getBySearchCriteria(criteria);
+			  interviewer = list.get(0);
+		}
+	 RequestDispatcher view = request.getRequestDispatcher("/interviewerView.jsp");
+	 request.setAttribute("intrv", isaService.getAll());
+	 view.include(request, response);
 	}
 
 }

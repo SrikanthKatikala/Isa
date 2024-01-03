@@ -17,11 +17,7 @@
 
 <title>Interviewer</title>
 
-<script>
-	$(function() {
-		$('input[name=dob]').datepicker();
-	});
-</script>
+
 <style>
         body {
             font-family: Arial, sans-serif;
@@ -83,15 +79,14 @@
 <body>
 	<div>
 		<h1>
-			Interviewer 
-			<c:out value="${hlabel}" />
+			Interviewer
 		</h1>
-		<form method="POST" action="interviewer" name="frmAddUser">
+		<form method="POST" action="interviewer">
 				<h2 style="color:red;">Interviewer</h2>
 			<table style="width: 500px">
 				<tr>
-					<td>Interviewer ID :<span style="color: red">*</span></td>
-						<td><input type="hidden" name="interviewerId" value="${intrvr.interviewerId}"></td>
+					<td>Interviewer ID :</td>
+						<td><input type="hidden" name="interviewerId" value="${intrvr.getInterviewerId()}"></td>
 				</tr>
 
 				<tr>
@@ -123,10 +118,11 @@
 					<td align="center"><input class="a1" type="reset" value="Clear"></td>
 				</tr>
 				<tr>
-					<td colspan=2><a href="homepage.html" style="margin-left: 210px"><button>Back</button></a></td>
+					
 				</tr>
 			</table>
 		</form>
+		<td colspan=2><a href="homepage.html" style="margin-left: 210px; margin-top: 50px"><button>Home</button></a></td>
 	</div>
 </body>
 </html>

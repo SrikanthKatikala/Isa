@@ -22,7 +22,7 @@ import jakarta.servlet.http.HttpServletResponse;
 public class RecruiterController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private static IsaService<Recruiter, SearchCriteriaImpl> isaSurvice;
-	
+	private static Recruiter recruiter;
 	public void init(ServletConfig config) throws ServletException {
 		// TODO Auto-generated method stub
 	}
@@ -35,6 +35,8 @@ public class RecruiterController extends HttpServlet {
 		criteria.setUserName(name);
 		criteria.setUserPassword(password);
 		List<Recruiter> list = isaSurvice.getBySearchCriteria(criteria);
+		recruiter = list.get(0);
+		request.setAttribute("recr", recruiter);
 		PrintWriter writer = response.getWriter();
 		response.setContentType("text/html");
 		if (list.size()>0) {

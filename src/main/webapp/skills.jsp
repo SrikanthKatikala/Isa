@@ -44,7 +44,7 @@
 <body>
 <div>
 	<header>
-		<div class = "user" > <a href="#"><img src="images/user.png">userName</a></div>
+		
         <h1>Zettamine Labs Pvt Ltd</h1>
 		<nav>
             <ul>
@@ -53,7 +53,7 @@
                 <li><a href="applicant.html">Applicants</a></li>
                 <li><a href="interview.html">Interviewers</a></li>
                 <li><a href="interviewSchedule.html">Interview Details</a></li>
-                <li><a href="scheduling.html">Schedule</a></li>
+                <li><a href="scheduling.jsp">Schedule</a></li>
                 <li><a href="logout.html">Logout</a></li>
             </ul>
         </nav>

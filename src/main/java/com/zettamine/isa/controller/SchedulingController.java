@@ -13,7 +13,7 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-@WebServlet("/schedule1")
+@WebServlet("/schedule3")
 public class SchedulingController extends HttpServlet{
 
 	public static IsaService<Schedule, SearchCriteriaImpl> isaService;
@@ -40,6 +40,8 @@ public class SchedulingController extends HttpServlet{
 		schedule.setInterviewDate(date);
 		schedule.setInterviewTime(time);
 		schedule.setStatus(status);
+		System.out.println("date : "+date);
+		System.out.println("Time: "+time);
 		
 		isaService.save(schedule);
 		RequestDispatcher rd = req.getRequestDispatcher("scheduling.jsp");

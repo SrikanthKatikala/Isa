@@ -17,11 +17,6 @@
 
 <title>Interview Schedule</title>
 
-<script>
-	$(function() {
-		$('input[name=dob]').datepicker();
-	});
-</script>
 </head>
 <body>
 	<div>
@@ -30,7 +25,7 @@
 		</h1>
 		<br>
 		<br>
-		<form method="POST" action='schedule1' name="frmAddUser">
+		<form method="POST" action='schedule1' >
 			<table style="width: 500px">
 				<tr>
 					<td>Schedule Id: </td>

@@ -1,3 +1,4 @@
+<%@page import="com.zettamine.isa.dto.Recruiter"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
@@ -10,7 +11,7 @@
 <style type="text/css">
 form { 
 	align: center;
-	height: 460px;
+	height: 480px;
 	width: 460px;
 	box-shadow: 0px 10px 10px black;
 	border-radius: 20px;
@@ -45,7 +46,6 @@ button , #s1, #s2{
 <body>
 <div>
 		<header>
-		<div class = "user" > <a href="#"><img src="images/user.png">userName</a></div>
         <h1>Zettamine Labs Pvt Ltd</h1>
 		<nav>
             <ul>
@@ -54,19 +54,19 @@ button , #s1, #s2{
                 <li><a href="applicant.html">Applicants</a></li>
                 <li><a href="interview.html">Interviewers</a></li>
                 <li><a href="interviewSchedule.html">Interview Details</a></li>
-                <li><a href="scheduling.html">Schedule</a></li>
+                <li><a href="scheduling.jsp">Schedule</a></li>
                 <li><a href="logout.html">Logout</a></li>
             </ul>
         </nav>
         </header>
 	</div>
 	<div>	
-	<form action="schedule1" method="post">
+	<form action="schedule3" method="post">
 	<h2 style="padding-top: 20px; margin-left: 100px;">Schedule Interview</h2>
 	
 			<table>
 				<tr>
-					<th><label>Enter candidate Id:   </label></th>
+					<th><label>Enter Applicant Id:   </label></th>
 					<td><input placeholder="Enter Applicant Id" type="number" name ="applicantId" required onblur="fetchData(this.value)"></td>
 				</tr>
 				<tr>
@@ -103,13 +103,13 @@ button , #s1, #s2{
 	
 	</div>
 	<hr>
-	<div id="t1">
-		<h1 id="s1"></h1>
+	<div id="t1" style="border:2px solid black">
+		<h1 id="x1"></h1>
 	</div>
 	<script>
 	   var xhttp;
+	   var obj ;
         function fetchData(id) {
-        	alert(id);
             xhttp = new XMLHttpRequest();
             
             xhttp.open("GET", "schedule2?applicantId="+id, true);
@@ -117,19 +117,19 @@ button , #s1, #s2{
             xhttp.send();
         }
         function getInterviewerDetails(){
-        	alert(xhttp.readyState);
 			if(xhttp.readyState == 4 && xhttp.status==200){	
 			var resp = xhttp.responseText;			
 				console.log(resp);
 				if(resp.length > 0){
-					var obj = JSON.parse(resp);
+					obj = JSON.parse(resp);
 					console.log(obj)		
 					arrayToTable(obj);
-					document.getElementById("s1").innerHTML=obj;
+					//document.getElementById("x1").innerHTML=obj;
 				}		
 			}
         }
         var tb= document.getElementById("t1");
+        
         function arrayToTable(data) {
             // Create the table element
             var table = document.createElement('table');
@@ -142,18 +142,15 @@ button , #s1, #s2{
                 headerRow.appendChild(th);
             }
 
-            // Create a row for each object in the array
             for (var i = 0; i < data.length; i++) {
                 var row = table.insertRow(i + 1);
 
-                // Populate the row with data
                 for (var key in data[i]) {
                     var cell = row.insertCell();
                     cell.innerHTML = data[i][key];
                 }
             }
 
-            // Append the table to the body
             document.body.appendChild(table);
         }
         

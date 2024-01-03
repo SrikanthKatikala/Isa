@@ -8,23 +8,9 @@
 <title>Interview Details</title>
 <style>
         body {
-            font-family: Arial, sans-serif;
+            text-align: center;
             background-color: #f4f4f4;
-            margin: 0px;
-            padding: 0;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            height: 100vh;
         }
-
-        form {
-            background-color: #fff;
-            padding: 20px;
-            border-radius: 30px;
-            box-shadow: 10px 10px 10px black;
-        }
-
         label {
             display: block;
             margin-bottom: 8px;
@@ -34,15 +20,6 @@
 			color: red;
 			text-align: center;
 		}
-
-        input,
-        textarea {
-            width: 100%;
-            padding: 8px;
-            margin-bottom: 16px;
-            box-sizing: border-box;
-        }
-
         button {
             background-color: #4caf50;
             color: #fff;
@@ -50,10 +27,9 @@
             border: none;
             border-radius: 4px;
             cursor: pointer;
+            margin-top:50px;
         }
-        span{
-			color: red;
-		}
+
 		table,td,th{
 			border-collapse:collapse;
 			border: 3px solid black;
@@ -82,7 +58,9 @@
 </head>
 
 <body>
-	<h1>Interview details</h1>
+	<div style="width:100%">
+		<h1>Interview details</h1>
+	</div>
 	<div>
 		<table border=1 align=center>
 			<thead>
@@ -112,9 +90,7 @@
 				</c:forEach>
 			</tbody>
 		</table>
-
-		<hr>
-		
+		<a href="homepage.html" style="margin-top: 100px"><button>Home</button></a>
 	</div>
 </body>
 </html>

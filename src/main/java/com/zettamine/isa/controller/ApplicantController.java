@@ -56,9 +56,6 @@ public class ApplicantController extends HttpServlet {
 		  applicant =list.get(0);
 		  
 		  request.setAttribute("apl", applicant);
-		  
-		  request.setAttribute("label","Update Applicant");
-		  request.setAttribute("hlabel", "Edit Applicant");
 		  forward = "/update.jsp";
 		 }  
 		 
@@ -75,6 +72,9 @@ public class ApplicantController extends HttpServlet {
 		 }
 		 else if(action.equalsIgnoreCase("insert"))
 		 {
+			 applicant= new Applicant();
+			 applicant.setApplicantId(null);
+			 
 		  forward="/update.jsp";
 		 }
 		 
@@ -91,7 +91,7 @@ public class ApplicantController extends HttpServlet {
 		String remarks = request.getParameter("remarks");
 		String sk = request.getParameter("skill");
 		Integer skill=Integer.parseInt(sk);
-		
+		String id = request.getParameter("applicantId");
 		 applicant = new Applicant();
 		 applicant.setApplicantName(name);
 		 applicant.setEmail(email);
@@ -100,7 +100,19 @@ public class ApplicantController extends HttpServlet {
 		 applicant.setApplicantRemarks(remarks);
 		 applicant.setPrimarySkill(skill);
 		 
-		 isaService.save(applicant);
+		 if (id==null || id.isEmpty()) {
+			 isaService.save(applicant);
+		} else {
+			SearchCriteriaImpl criteria = new SearchCriteriaImpl();
+			 applicant.setApplicantId(Integer.parseInt(id));
+			 isaService.update(applicant, id);
+			 
+			  criteria.setApplicantId(Integer.parseInt(id));
+			  List<Applicant> list = isaService.getBySearchCriteria(criteria);
+			  applicant =list.get(0);
+			
+		}
+		 
 		 PrintWriter out = response.getWriter();
 		 request.setAttribute("app", applicant);
 		 request.setAttribute("all", isaService.getAll());

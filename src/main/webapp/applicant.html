@@ -44,7 +44,6 @@
 <body>
 	<div>
 		<header>
-		<div class = "user" > <a href="#"><img src="images/user.png">userName</a></div>
         <h1>Zettamine Labs Pvt Ltd</h1>
 		<nav>
             <ul>
@@ -63,8 +62,8 @@
 	<label>Applicant By Id: </label><span>*</span>
 	<input id="search" placeholder="search appicant by id" name="applicantId" onblur="getApplicantById(this.value)"><br>
 	<hr>
-	<form action="applicants" method="get">
-		<input type="submit" value="View All Candidates" id="submit"> 
+	<form action="applicant" method="get">
+		<input type="submit" value="View All Applicants" id="submit"> 
 	</form>
 	<hr>
 	<table border="1">
@@ -99,9 +98,7 @@
 			var aplEmail =''
 			var aplSkill =''
 			if(xhr.readyState == 4 && xhr.status==200){
-			
 				var resp = xhr.responseText;
-				
 				console.log(resp);
 				if(resp.length > 0){
 					var obj = JSON.parse(resp);
