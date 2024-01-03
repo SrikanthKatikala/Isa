@@ -18,7 +18,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
 @WebServlet("/addSkill")
-public class SkillServlet extends HttpServlet {
+public class SkillController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private static Skill skill ;
 	public static IsaService<Skill, SearchCriteriaImpl> isaService;
@@ -27,15 +27,30 @@ public class SkillServlet extends HttpServlet {
  		isaService = new SkillServiceImpl();
  		skill= new Skill();
 	}
-	public void destroy() {
-		// TODO Auto-generated method stub
-	}
+	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		response.setContentType("text/html");
+		String forward="";	 
+		String action = request.getParameter("action");
 		
-		List<Skill> all = isaService.getAll();
-		request.setAttribute("allSkills", all);
-		RequestDispatcher requestDispatcher = request.getRequestDispatcher("allSkills.jsp");
+		if(action==null) {
+			response.setContentType("text/html");
+			
+			List<Skill> all = isaService.getAll();
+			request.setAttribute("allSkills", all);
+			forward= "/allSkills.jsp";
+		}
+		
+		else if(action.equalsIgnoreCase("delete")) {
+			
+			String id = request.getParameter("skillId");
+			Integer sId = Integer.parseInt(id);
+			skill.setSkillId(sId);
+			request.setAttribute("allSkills", isaService.getAll());
+			isaService.delete(skill);	
+			forward="/allSkills.jsp";
+		}
+			
+		RequestDispatcher requestDispatcher = request.getRequestDispatcher(forward);
 		requestDispatcher.forward(request, response);
 		
 	}
@@ -45,14 +60,13 @@ public class SkillServlet extends HttpServlet {
 		response.setContentType("text/html");
 		PrintWriter pw = response.getWriter();
 		
-		String name = (String) request.getAttribute("skill");
+		String name =  request.getParameter("skill");
 		skill.setSkillDesc(name);
 		isaService.save(skill);
 		String skillDesc = skill.getSkillDesc();
 		System.out.println(skillDesc);
-		
+		request.setAttribute("allSkills", isaService.getAll());
 		RequestDispatcher requestDispatcher = request.getRequestDispatcher("skills.jsp");
-		pw.println("<p style= \"color: green;\" >Operation done</p>");
 		requestDispatcher.forward(request, response);
 	}
 

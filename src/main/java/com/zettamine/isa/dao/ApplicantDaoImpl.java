@@ -42,14 +42,28 @@ public class ApplicantDaoImpl implements IsaDao<Applicant, SearchCriteriaImpl> {
 
 	@Override
 	public List<Applicant> getBySearchCriteria(SearchCriteriaImpl criteria) {
-		
+		con=ConnectionFactory.getDBConne();
+		String get = "select * from isa.applicant where applicant_id=?";
+		try {
+			Integer applicantId = criteria.getApplicantId();
+			pst= con.prepareStatement(get);
+			pst.setInt(1, applicantId);
+			ResultSet rs = pst.executeQuery();
+			List<Applicant> list = new ArrayList<Applicant>();
+			if(rs.next()) {
+				list.add(new Applicant(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getInt(7)));
+			}
+			return list;
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 		return null;
 	}
 
 	@Override
 	public void save(Applicant applicant) {
 		con = ConnectionFactory.getDBConne();
-		String insert = "insert into isa.applicant(applicant_name,email ,phone_number,highest_qualification ,applicant_remarks,primary_skill) values(?,?,?,?,?,?)";
+		String insert = "insert into isa.applicant(applicant_name, email, phone_number, highest_qualification, applicant_remarks, primary_skill) values(?,?,?,?,?,?)";
 		
 		try {
 			pst = con.prepareStatement(insert);
@@ -71,10 +85,9 @@ public class ApplicantDaoImpl implements IsaDao<Applicant, SearchCriteriaImpl> {
 	}
 
 	@Override
-	public void update(Applicant t, String... params) {
+	public void update(Applicant applicant, String... params) {
 		String aplId = params[0];
 		Integer id = Integer.parseInt(aplId);
-		Applicant applicant = new Applicant();
 		con=ConnectionFactory.getDBConne();
 		String update = "update isa.applicant set applicant_name=?, email=?, phone_number=?, highest_qualification=? ,applicant_remarks=?, primary_skill=? where applicant_id=?";
 		try{
@@ -99,8 +112,23 @@ public class ApplicantDaoImpl implements IsaDao<Applicant, SearchCriteriaImpl> {
 	}
 
 	@Override
-	public void delete(Applicant t) {
-		// TODO Auto-generated method stub
+	public void delete(Applicant applicant) {
+		con=ConnectionFactory.getDBConne();
+		String delete = "delete from isa.applicant where applicant_id =?";
+		try {
+			pst= con.prepareStatement(delete);
+		
+			pst.setInt(1, applicant.getApplicantId());
+			int num = pst.executeUpdate();
+			if (num!=0) {
+				System.out.println("data deleted");
+			} else {
+				System.out.println("No data deleted");
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 		
 	}
 

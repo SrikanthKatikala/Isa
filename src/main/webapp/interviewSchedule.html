@@ -5,23 +5,41 @@
 <title>Interview Schedule</title>
 <link rel="stylesheet" href="homepage.css">
 <style>
-	input {
-			height: 35px;
-            width: 10%;
+        form {
+            align-items: center;
+            justify-content: center;
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+         input {
+            width: 40%;
             padding: 8px;
-            margin-bottom: 16px;
+            margin-left:30%;
             box-sizing: border-box;
-            background-color: lime;
-            margin: auto;
-            border-radius: 5px;
-            font-size: 20px;
-            box-shadow: 0px 0px 5px black;
-          }
-     form {
-     	margin-top: 40px;
-     	align: center;
-     }     
-</style>
+        }
+        label{
+            width: 40%;
+            padding: 8px;
+            margin-left:30%;
+            margin-bottom:10px; 
+        }
+        span{
+        color:red;
+        }
+       #submit{
+       		color: blue;
+            font-weight: bold;
+             background-color: rgb(128, 255, 128);
+        }
+        #heading{
+			color: darkorange;
+		}
+        
+  </style>
 </head>
 <body>
 <div>
@@ -41,8 +59,9 @@
         </nav>
        </header>
 	</div>
+	<h1 id="heading">Interview Details</h1>
 	<form action="schedule1" method="GET">
-		<input type="submit" value ="View all">
+		<input type="submit" value ="View all" id="submit">
 	</form>
 </body>
 </html>

@@ -15,7 +15,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
 @WebServlet("/schedule2")
-public class SearchInterviewerServlet extends HttpServlet {
+public class SearchInterviewerController extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;
 	@Override

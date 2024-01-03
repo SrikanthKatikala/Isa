@@ -15,7 +15,7 @@
 <script type="text/javascript"
 	src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.18/jquery-ui.min.js"></script>
 
-<title>ZETTAMINE | USER MANAGEMENT</title>
+<title>ZETTAMINT</title>
 
 <script>
 	$(function() {
@@ -81,12 +81,17 @@
     </style>
 </head>
 <body>
-	<div id="wrapper">
+	<div>
 		<h1>  Applicant<c:out value="${hlabel}" />
 		</h1>
 		<form method="post" action="applicant" name="frmAddUser">
-		<h2>Applicant  <c:out value="${apl.applicantId}" /></h2>
+		<h2>Applicant </h2>
+		
 			<table style="width: 500px">
+				<tr>
+					<td>Applicant Id </td>
+					<td><input type="hidden" name="applicantId" value="${apl.applicantId}"></td>
+				</tr>
 				<tr>
 					<td>Applicant Name :<span
 						style="color: red">*</span></td>
@@ -101,7 +106,7 @@
 				<tr>
 					<td>Phone Number:<span
 						style="color: red">*</span> </td>
-					<td><input type="number" name="phone" required
+					<td><input type="tel" name="phone" required
 						value="<c:out value="${apl.phoneNumber}" />" /></td>
 				</tr>
 				<tr>
@@ -127,7 +132,11 @@
 					<td align="center"><input type="submit" class="a1"></td>
 					<td align="center"><input type="reset" value="Clear" class="a1"></td>
 				</tr>
+				<tr>
+					<td colspan=2><a href="homepage.html" style="margin-left: 210px"><button>Back</button></a></td>
+				</tr>
 			</table>
+			
 		</form>
 	</div>
 </body>

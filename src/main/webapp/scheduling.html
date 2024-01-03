@@ -110,9 +110,13 @@ button , #s1, #s2{
         	alert(id);
             var xhttp = new XMLHttpRequest();
             xhttp.onreadystatechange = function() {
-            	document.getElementById("allinterviewers").innerHTML = this.responseText;
+            	 if (this.readyState == 4 && this.status == 200) {
+                     
+            		 document.getElementById("allinterviewers").innerHTML = this.responseText;
+                 }
+            	
                };
-            xhttp.open('', 'schedule2', true);
+            xhttp.open('post', 'schedule2', true);
             xhttp.send();
         }
         

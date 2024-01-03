@@ -2,6 +2,7 @@ package com.zettamine.isa.controller;
 
 import java.io.IOException;
 import java.text.SimpleDateFormat;
+import java.util.List;
 
 import com.zettamine.isa.dto.Interviewer;
 import com.zettamine.isa.dto.SearchCriteriaImpl;
@@ -17,11 +18,12 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
 @WebServlet("/interviewer")
-public class InterviewerServlet extends HttpServlet {
+public class InterviewerController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
    
 	private static IsaService<Interviewer, SearchCriteriaImpl> isaService;
 	private static Interviewer interviewer;
+	
 	@Override
 	public void init(ServletConfig config) throws ServletException {
 		isaService = new InterviewerService();
@@ -39,13 +41,19 @@ public class InterviewerServlet extends HttpServlet {
 	 
 	 else if(action.equalsIgnoreCase("edit"))
 	 {
+		 SearchCriteriaImpl criteria = new SearchCriteriaImpl();
+		 interviewer =  new Interviewer();
 	  forward = "/interviewerView.jsp";
 	  String iId = request.getParameter("interviewerId");
 	  Integer id = Integer.parseInt(iId);
 	  interviewer.setInterviewerId(id);
+	  criteria.setInterviewerId(id);
+	  List<Interviewer> list = isaService.getBySearchCriteria(criteria);
+	  System.out.println(list);
+	  interviewer = list.get(0);
+	  System.out.println(interviewer);
 	  isaService.update(interviewer, iId);
-	  
-	  request.setAttribute("all", isaService.getAll());
+	  request.setAttribute("intrvr", interviewer);
 	  request.setAttribute("label","Update Interviewer");
 	  request.setAttribute("hlabel", "Edit Interviewer");
 	 }  
@@ -64,9 +72,7 @@ public class InterviewerServlet extends HttpServlet {
 	 }
 	 else if(action.equalsIgnoreCase("insert"))
 	 {
-		 interviewer = new Interviewer();
-	  request.setAttribute("label","Add User");
-	  request.setAttribute("hlabel", "Save User");
+	  request.setAttribute("hlabel", "Add Interviewer");
 	  forward="/interviewerView.jsp";
 	 }
 	 
@@ -81,19 +87,9 @@ public class InterviewerServlet extends HttpServlet {
 		interviewer.setInterviewerName(request.getParameter("name"));
 		interviewer.setEmail(request.getParameter("email"));
 		interviewer.setPhoneNumber(request.getParameter("mobile"));
-		int int1 = Integer.parseInt(request.getParameter("skill"));
-		interviewer.setPrimarySkill(int1);	 
-	 String interviewerId = request.getParameter("interviewerId");
-	 if(interviewerId == null || interviewerId.isEmpty())
-	 {
+		interviewer.setPrimarySkill(Integer.parseInt(request.getParameter("skill")));	 
 		isaService.save(interviewer);
-	 }
-	 else
-	 {
-		interviewer.setInterviewerId(Integer.parseInt(interviewerId));
-		isaService.update(interviewer, interviewerId);
-	 }
-	 RequestDispatcher view = request.getRequestDispatcher("/interviewerView.jsp");
+	 RequestDispatcher view = request.getRequestDispatcher("/interviewer.jsp");
 	 request.setAttribute("intrvr", isaService.getAll());
 	 view.forward(request, response);
 	}

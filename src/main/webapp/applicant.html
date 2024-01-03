@@ -4,6 +4,42 @@
 <meta charset="ISO-8859-1">
 <title>Applicant</title>
 <link rel="stylesheet" href="homepage.css">
+<style>
+        form {
+            align-items: center;
+            justify-content: center;
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+         input {
+            width: 40%;
+            padding: 8px;
+            margin-left:30%;
+            box-sizing: border-box;
+        }
+        label{
+            width: 40%;
+            padding: 8px;
+            margin-left:30%;
+            margin-bottom:10px; 
+        }
+        span{
+        color:red;
+        }
+       #submit{
+       		color: blue;
+            font-weight: bold;
+             background-color: rgb(128, 255, 128);
+        }
+        #heading{
+			color: darkorange;
+		}
+        
+  </style>
 </head>
 <body>
 	<div>
@@ -23,14 +59,66 @@
         </nav>
         </header>
 	</div>
-	<form action="" method="">
-		<input placeholder="search candidate by id">
-		<input type="submit" value="Search">
+	<h1 id="heading">Applicant</h1>
+	<label>Applicant By Id: </label><span>*</span>
+	<input id="search" placeholder="search appicant by id" name="applicantId" onblur="getApplicantById(this.value)"><br>
+	<hr>
+	<form action="applicants" method="get">
+		<input type="submit" value="View All Candidates" id="submit"> 
 	</form>
 	<hr>
-	<form action="applicant" method="get">
-		<input type="submit" value="View All Candidates"> 
-	</form>
-	<hr>
+	<table>
+		<tr>
+			<th>Id</th>
+			<td><span id="target1"></span></td>
+		</tr>
+		<tr>
+			<th>Name</th>
+			<td><span id="target2"></span></td>
+		</tr>
+		<tr>
+			<th>Email</th>
+			<td><span id="target3"></span></td>
+		</tr>
+		<tr>
+			<th>Skill</th>
+			<td><span id="target4"></span></td>
+		</tr>
+	</table>
+	<script type="text/javascript">
+		var xhr;
+		function getApplicantById(id){
+			alert('inside method')
+			xhr = new XMLHttpRequest();
+			xhr.open("GET","applicantSearch?applicantId="+id, true);
+			xhr.onreadystatechange = stateChanged;
+			xhr.send();
+		}
+		function stateChanged(){
+			var aplId = 'No Match Found'
+			var aplName = ''
+			var aplEmail =''
+			var aplSkill =''
+			alert(xhr.readyState)
+			if(xhr.readyState == 4 && xhr.status==200){
+				alert('got response');
+				var resp = xhr.responseText;
+				alert(resp);
+				console.log(resp);
+				if(resp.length > 0){
+					var obj = JSON.parse(resp);
+					console.log(obj);
+					aplId = obj.applicantId;
+					aplName = obj.applicantName;	
+					aplEmail = obj.email;
+					aplSkill=obj.skill;
+				}		
+			}
+			document.getElementById("target1").innerHTML = aplId;
+			document.getElementById("target2").innerHTML = aplName;
+			document.getElementById("target3").innerHTML = aplEmail;
+			document.getElementById("target4").innerHTML = aplSkill;
+		}
+	</script>
 </body>
 </html>

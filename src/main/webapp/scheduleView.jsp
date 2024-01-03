@@ -24,38 +24,37 @@
 </script>
 </head>
 <body>
-	<div id="wrapper">
+	<div>
 		<h1>
 			Interviewer Schedule 
-			<c:out value="${hlabel}" />
 		</h1>
 		<br>
 		<br>
-		<form method="POST" action='schedule' name="frmAddUser">
+		<form method="POST" action='schedule1' name="frmAddUser">
 			<table style="width: 500px">
 				<tr>
 					<td>Schedule Id: </td>
-					<td><input type="number" readonly="readonly" name="interviewerId"
+					<td><input type="hidden" readonly="readonly" name="interviewerId"
 						value="<c:out value="${sch.scheduleId}" />" /></td>
 				</tr>
 
 				<tr>
-					<td>Applicant Id: </td>
-					<td><input type="number" name="applicantId" required="required"
+					<td>Applicant Name: </td>
+					<td><input type="text" name="applicantName" required="required"
 						value="<c:out value="${sch.applicantId}"/>"> <span
 						style="color: red">*</span></td>
 				</tr>
 
 				<tr>
-					<td>Interviewer Id: </td>
-					<td><input type="number" name="interiewerId"
-						value="<c:out value="${sch.interviewerId}" />" /></td>
+					<td>Interviewer Name: </td>
+					<td><input type="text" name="interiewerName"
+						value="${sch.interviewerId}"/></td>
 				</tr>
 
 				<tr>
-					<td>Recruiter Id: </td>
+					<td>Recruiter Name: </td>
 					<td>
-						<input type="number" name="recruiterId" value="<c:out value="${sch.recruiterId}" />" />
+						<input type="text" name="recruiterName" value="<c:out value="${sch.recruiterId}" />" />
 					</td>
 				</tr>
 
@@ -72,8 +71,8 @@
 					<td><input type="text" name="status" value="<c:out value="${sch.status}" />" /></td>
 				</tr>
 				<tr>
-					<td colspan="2" align="center"><input type="submit"
-						value="${label}"}" ></td>
+					<td align="center"><input type="submit"></td>
+					<td><input type="reset"></td>
 				</tr>
 			</table>
 		</form>

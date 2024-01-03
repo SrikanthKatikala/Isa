@@ -7,6 +7,39 @@
 <meta charset="ISO-8859-1">
 <title>Skills</title>
  <link rel="stylesheet" href="homepage.css">
+<style>
+        form {
+            align-items: center;
+            justify-content: center;
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+         input {
+            width: 40%;
+            padding: 8px;
+            margin-left:30%;
+            box-sizing: border-box;
+        }
+        label{
+            width: 40%;
+            padding: 8px;
+            margin-left:30%;
+            margin-bottom:10px; 
+        }
+        span{
+        color:red;
+        }
+       #submit{
+       		color: blue;
+            font-weight: bold;
+             background-color: rgb(128, 255, 128);
+        }
+        
+  </style>
 </head>
 <body>
 <div>
@@ -26,15 +59,18 @@
         </nav>
       </header>
 </div>
-	<h1>Add skill</h1>
+ <div>
 	<form action="addSkill" method="post">
-		<input placeholder="add skill" name="skill" required><br>
-		<input type="submit">
+		<label for="applicantName">Add Skill:<span>*</span></label><br>
+		<input type="text" placeholder="Add Skill" name="skill" required><br>
+		<input  type="submit" id = "submit" value="Add Skill">
 	</form>
-	<br>
+</div>
+<div>
 	<form action="addSkill" method="get" style="margin: auto">
-		<input type="submit" value="View All">
+		<input type="submit" id= "submit" value="View All">
 	</form>
+</div>
 	
 	<script>
 		

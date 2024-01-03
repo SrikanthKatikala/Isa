@@ -27,8 +27,9 @@ public class ApplicantService implements IsaService<Applicant, SearchCriteriaImp
 
 	@Override
 	public List<Applicant> getBySearchCriteria(SearchCriteriaImpl criteria) {
-		// TODO Auto-generated method stub
-		return null;
+		isaDao = new ApplicantDaoImpl();
+		List<Applicant> all = isaDao.getBySearchCriteria(criteria);
+		return all;
 	}
 
 	@Override

@@ -82,8 +82,9 @@
 </head>
 
 <body>
-	<div id="wrapper">
-		<h1>Details Of interviewer</h1><br>
+	
+	<div>
+	<h1 style="width:100%">Details Of interviewer</h1><br>
 		<a href="interviewer?action=insert" ><button id="b1" class="a1">New Interviewer</button></a> <br>
 		<table align=center>
 			<thead>
@@ -101,20 +102,20 @@
 			<tbody>
 				<c:forEach items="${intrvr}" var="intrvr">
 					<tr>
-						<td><c:out value="${intrvr.interviewerId}" /></td>
+						<td>${intrvr.interviewerId}</td>
 						<td><c:out value="${intrvr.interviewerName}" /></td>
 						<td><c:out value="${intrvr.email}" /></td>
 						
 						<td><c:out value="${intrvr.phoneNumber}" /></td>
-						<td><c:out value="${intrvr.primarySkill}" /></td>
+						<td>${intrvr.primarySkill}</td>
 						<td>
-						  <a href="interviewer?action=edit&interviewerId=<c:out value="${intrvr.interviewerId}"/>"><button>Update</button></a></td>
+						  <a href="interviewer?action=edit&interviewerId=${intrvr.interviewerId}"><button>Update</button></a></td>
 						<td>
-						<a href="interviewer?action=delete&interviewerId=<c:out value="${intrvr.interviewerId}"/>"
-							onclick="return confirm('Do you want to delete the interviewer?')"><button>Delete</button></a></td>
+						<a href="interviewer?action=delete&interviewerId=${intrvr.interviewerId}" onclick="return confirm('Do you want to delete the interviewer?')"><button>Delete</button></a></td>
 					</tr>
 				</c:forEach>
 			</tbody>
+			<a href="homepage.html" style="margin-top: 100px"><button>Home</button></a>
 		</table>
 	</div>
 </body>

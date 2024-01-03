@@ -83,18 +83,18 @@
 
 <body>
 	<h1>Interview details</h1>
-	<div id="wrapper">
+	<div>
 		<table border=1 align=center>
 			<thead>
 				<tr>
 					<th>Schedule Id</th>
-					<th>Applicant Id</th>
-					<th>Interviewer Id</th>
-					<th>Recruiter Id</th>
+					<th>Applicant Name</th>
+					<th>Interviewer Name</th>
+					<th>Recruiter Name</th>
 					<th>Date</th>
 					<th>Time</th>
 					<th>Status</th>
-					<th>Delete</th>
+					
 				</tr>
 			</thead>
 
@@ -102,24 +102,19 @@
 				<c:forEach items="${sched}" var="sch">
 					<tr>
 						<td><c:out value="${sch.scheduleId}" /></td>
-						<td><c:out value="${sch.applicantId}" /></td>
-						<td><c:out value="${sch.interviewerId}" /></td>
-						<td><c:out value="${sch.recruiterId}" /></td>
+						<td><c:out value="${sch.applicantName}" /></td>
+						<td><c:out value="${sch.interviewerName}" /></td>
+						<td><c:out value="${sch.recruiterName}" /></td>
 						<td><c:out value="${sch.interviewDate}" /></td>
 						<td><c:out value="${sch.interviewTime}" /></td>
 						<td><c:out value="${sch.status}" /></td>
-						<!-- <td><a href="schedule?action=edit&scheduleId=<c:out value="${sch.scheduleId}"/>">Update</a></td> -->
-						
-						<td>
-						<a href="schedule1?action=delete&scheduleId=<c:out value="${sch.interviewerId}"/>"
-							onclick="return confirm('Do you want to delete the schedule ?')"><button class="a1">Delete</button></a></td>
-					</tr>
+						</tr>
 				</c:forEach>
 			</tbody>
 		</table>
 
 		<hr>
-		<!-- <a href="interviewer?action=insert">+ Schedule Interviewer</a> -->
+		
 	</div>
 </body>
 </html>

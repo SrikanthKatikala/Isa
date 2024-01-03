@@ -45,15 +45,18 @@ public class InterviewerDaoImpl implements IsaDao<Interviewer, SearchCriteriaImp
 	public List<Interviewer> getBySearchCriteria(SearchCriteriaImpl criteria) {
 		
 		con=ConnectionFactory.getDBConne();
-		String get = "select * from isa.interviewer where interviewerId =?";
+		String get = "select * from isa.interviewer where interviewer_id =?";
 		try {
 			pst= con.prepareStatement(get);
 			pst.setInt(1, criteria.getInterviewerId());
+			System.out.println(criteria.getInterviewerId());
 			ResultSet rs = pst.executeQuery();
 			List<Interviewer> list = new ArrayList<Interviewer>();
-			while(rs.next()) {
+			if(rs.next()) {
+				System.out.println("im nside");
 				list.add(new Interviewer(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getInt(5)));
 			}
+			System.out.println(list);
 			return list;
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -67,7 +70,6 @@ public class InterviewerDaoImpl implements IsaDao<Interviewer, SearchCriteriaImp
 		String insert = "insert into isa.interviewer(interviewer_name, email, phone_number, primary_skill) values (?,?,?,?)";
 		try {
 			pst= con.prepareStatement(insert);
-			interviewer = new Interviewer();
 			pst.setString(1, interviewer.getInterviewerName());
 			pst.setString(2, interviewer.getEmail());
 			pst.setString(3, interviewer.getPhoneNumber());
@@ -87,12 +89,12 @@ public class InterviewerDaoImpl implements IsaDao<Interviewer, SearchCriteriaImp
 
 	@Override
 	public void update(Interviewer interviewer , String... params) {
+		System.out.println(interviewer);
 		con=ConnectionFactory.getDBConne();
 		String update = "update isa.interviewer set interviewer_name= ?, email = ?, phone_number=?, primary_skill=? where interviewer_id =?";
 		try {
 			pst= con.prepareStatement(update);
 			Integer id = Integer.parseInt(params[0]);
-			interviewer = new Interviewer();
 			pst.setString(1, interviewer.getInterviewerName());
 			pst.setString(2, interviewer.getEmail());
 			pst.setString(3, interviewer.getPhoneNumber());
@@ -117,7 +119,6 @@ public class InterviewerDaoImpl implements IsaDao<Interviewer, SearchCriteriaImp
 		String delete = "delete from isa.interviewer where interviewer_id =?";
 		try {
 			pst= con.prepareStatement(delete);
-			//interviewer = new Interviewer();
 		
 			pst.setInt(1, interviewer.getInterviewerId());
 			int num = pst.executeUpdate();

@@ -78,7 +78,9 @@
 </head>
 
 <body>
-	<div id="wrapper" align="center">
+
+	<div align="center">
+	
 		<h1>Details Of Applicants</h1>
 		<a style="float: right" href="applicant?action=insert"><button id="b1" class="a1">New Applicant</button></a> <br>
 		<table border="1" align=center>
@@ -107,14 +109,15 @@
 						<td><c:out value="${apl.applicantRemarks}"/></td>
 						<td><c:out value="${apl.primarySkill}"/></td>
 						<td>
-						  <a href="applicant?action=edit&applicantId="<c:out value="${apl.applicantId}"/>"><button>Update</button></a></td>
+						  <a href="applicant?action=edit&applicantId=${apl.applicantId}"><button>Update</button></a></td>
 						<td>
-						<a href="applicant?action=delete&applicantId="<c:out value="${apl.applicantId}"/>" onclick="return confirm('Do you want to delete the user?')"><button>Delete</button></a>
+						<a href="applicant?action=delete&applicantId=${apl.applicantId}" onclick="return confirm('Do you want to delete the user?')"><button>Delete</button></a>
 						</td>
 					</tr>
 				</c:forEach>
 			</tbody>
 		</table>
+		<a href="homepage.html" style="margin-top: 100px"><button>Home</button></a>
 	</div>
 </body>
 </html>

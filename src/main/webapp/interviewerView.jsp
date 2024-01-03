@@ -81,7 +81,7 @@
     </style>
 </head>
 <body>
-	<div id="wrapper">
+	<div>
 		<h1>
 			Interviewer 
 			<c:out value="${hlabel}" />
@@ -91,8 +91,7 @@
 			<table style="width: 500px">
 				<tr>
 					<td>Interviewer ID :<span style="color: red">*</span></td>
-					<td><input type="text" readonly="readonly" name="interviewerId"
-						value="<c:out value="${intrvr.interviewerId}" />" /></td>
+						<td><input type="hidden" name="interviewerId" value="${intrvr.interviewerId}"></td>
 				</tr>
 
 				<tr>
@@ -104,24 +103,27 @@
 
 				<tr>
 					<td>Email :<span style="color: red">*</span></td>
-					<td><input type="email" name="email" value="<c:out value="${intrvr.email}" />" /></td>
+					<td><input type="email" name="email" value="${intrvr.email}"  /></td>
 				</tr>
 
 				<tr>
 					<td>Phone Number<span style="color: red">*</span></td>
 					<td>
-						<input type="number" name="mobile" value="<c:out value="${intrvr.phoneNumber}" />" />
+						<input type="number" name="mobile" value="${intrvr.phoneNumber}" />
 					</td>
 				</tr>
 
 				<tr>
 					<td>Skill :<span style="color: red">*</span></td>
-					<td><input type="number" name="skill" value="<c:out value="${intrvr.primarySkill}" />" /></td>
+					<td><input type="number" name="skill" value="${intrvr.primarySkill}" /></td>
 				</tr>
 
 				<tr>
 					<td align="center"><input class="a1" type="submit"value="Submit"></td>
 					<td align="center"><input class="a1" type="reset" value="Clear"></td>
+				</tr>
+				<tr>
+					<td colspan=2><a href="homepage.html" style="margin-left: 210px"><button>Back</button></a></td>
 				</tr>
 			</table>
 		</form>
