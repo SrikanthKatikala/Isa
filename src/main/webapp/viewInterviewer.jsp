@@ -1,3 +1,5 @@
+<%@page import="com.zettamine.isa.dto.Interviewer"%>
+<%@ page import="java.util.*" %>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
@@ -12,14 +14,16 @@
 			</thead>
 
 			<tbody>
-				<c:forEach items="${intrvr}" var="intrvr">
-					<tr>
-						<td><c:out value="${intrvr.interviewerId}" /></td>
-						<td><c:out value="${intrvr.interviewerName}" /></td>
-						<td><c:out value="${intrvr.primarySkill}" /></td>
-						
-					</tr>
-				</c:forEach>
+			<%
+			List<Interviewer> list=(List<Interviewer>) request.getAttribute("intrvr");
+			for(Interviewer intr:list){
+			%>
+				<tr>
+					<td><%= intr.getInterviewerId() %></td>
+					<td><%= intr.getInterviewerName() %></td>
+					<td><%= intr.getPrimarySkill() %></td>
+				</tr>
+				<%} %>
 			</tbody>
 		</table>
 	</div>

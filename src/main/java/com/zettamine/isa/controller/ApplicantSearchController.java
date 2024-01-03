@@ -18,7 +18,7 @@ import com.zettamine.isa.service.ApplicantService;
 import com.zettamine.isa.service.IsaService;
 
 @WebServlet("/applicantSearch")
-public class ApplicantSearch extends HttpServlet {
+public class ApplicantSearchController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
    
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

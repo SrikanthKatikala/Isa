@@ -1,3 +1,5 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -101,41 +103,59 @@ button , #s1, #s2{
 	
 	</div>
 	<hr>
-		<div id="allinterviewers">
-		
-		</div>
+	<div id="t1">
+		<h1 id="s1"></h1>
+	</div>
 	<script>
+	   var xhttp;
         function fetchData(id) {
         	alert(id);
-            var xhttp = new XMLHttpRequest();
-            xhttp.onreadystatechange = getInterviewerDetails
+            xhttp = new XMLHttpRequest();
+            
             xhttp.open("GET", "schedule2?applicantId="+id, true);
+            xhttp.onreadystatechange = getInterviewerDetails
             xhttp.send();
         }
         function getInterviewerDetails(){
-			var aplId = 'No Match Found'
-			var aplName = ''
-			var aplEmail =''
-			var aplSkill =''
-			if(xhr.readyState == 4 && xhr.status==200){
-			
-				var resp = xhr.responseText;
-				
+        	alert(xhttp.readyState);
+			if(xhttp.readyState == 4 && xhttp.status==200){	
+			var resp = xhttp.responseText;			
 				console.log(resp);
 				if(resp.length > 0){
 					var obj = JSON.parse(resp);
-					console.log(obj);
-					aplId = obj.applicantId;
-					aplName = obj.applicantName;	
-					aplEmail = obj.email;
-					aplSkill=obj.skill;
+					console.log(obj)		
+					arrayToTable(obj);
+					document.getElementById("s1").innerHTML=obj;
 				}		
 			}
-			document.getElementById("target1").innerHTML = aplId;
-			document.getElementById("target2").innerHTML = aplName;
-			document.getElementById("target3").innerHTML = aplEmail;
-			document.getElementById("target4").innerHTML = aplSkill;
-		}
+        }
+        var tb= document.getElementById("t1");
+        function arrayToTable(data) {
+            // Create the table element
+            var table = document.createElement('table');
+
+            // Create the header row
+            var headerRow = table.insertRow(0);
+            for (var key in data[0]) {
+                var th = document.createElement('th');
+                th.innerHTML = key;
+                headerRow.appendChild(th);
+            }
+
+            // Create a row for each object in the array
+            for (var i = 0; i < data.length; i++) {
+                var row = table.insertRow(i + 1);
+
+                // Populate the row with data
+                for (var key in data[i]) {
+                    var cell = row.insertCell();
+                    cell.innerHTML = data[i][key];
+                }
+            }
+
+            // Append the table to the body
+            document.body.appendChild(table);
+        }
         
     </script>
 </body>

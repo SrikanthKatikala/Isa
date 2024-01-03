@@ -53,7 +53,7 @@
                 <li><a href="applicant.html">Applicants</a></li>
                 <li><a href="interview.html">Interviewers</a></li>
                 <li><a href="interviewSchedule.html">Interview Details</a></li>
-                <li><a href="scheduling.html">Schedule</a></li>
+                <li><a href="scheduling.jsp">Schedule</a></li>
                 <li><a href="logout.html">Logout</a></li>
             </ul>
         </nav>
@@ -67,7 +67,7 @@
 		<input type="submit" value="View All Candidates" id="submit"> 
 	</form>
 	<hr>
-	<table>
+	<table border="1">
 		<tr>
 			<th>Id</th>
 			<td><span id="target1"></span></td>
@@ -88,7 +88,6 @@
 	<script type="text/javascript">
 		var xhr;
 		function getApplicantById(id){
-			alert('inside method')
 			xhr = new XMLHttpRequest();
 			xhr.open("GET","applicantSearch?applicantId="+id, true);
 			xhr.onreadystatechange = stateChanged;
@@ -99,11 +98,10 @@
 			var aplName = ''
 			var aplEmail =''
 			var aplSkill =''
-			alert(xhr.readyState)
 			if(xhr.readyState == 4 && xhr.status==200){
-				alert('got response');
+			
 				var resp = xhr.responseText;
-				alert(resp);
+				
 				console.log(resp);
 				if(resp.length > 0){
 					var obj = JSON.parse(resp);

@@ -50,16 +50,16 @@ public class ScheduleDaoImpl implements IsaDao<Schedule, SearchCriteriaImpl> {
 
 	@Override
 	public void save(Schedule schedule) {
-		String insert = "insert into isa.interview_schedule (applicant_id, interviewer_id, recruiter_id, interview_date, interview_time, status) values (?,?,?,'?'::DATE, '?'::TIME, 'scheduled')";
+		String insert = "insert into isa.interview_schedule (applicant_id, interviewer_id, recruiter_id, interview_date, interview_time, status) values (?,?,?,?::DATE, ?::TIME, ?)";
 		con=ConnectionFactory.getDBConne();
 		try {
 			pst= con.prepareStatement(insert);
-			schedule = new Schedule();
 			pst.setInt(1, schedule.getApplicantId());
 			pst.setInt(2,schedule.getInterviewerId());
 			pst.setInt(3, schedule.getRecruiterId());
 			pst.setString(4, schedule.getInterviewDate());
 			pst.setString(5, schedule.getInterviewTime());
+			pst.setString(6, schedule.getStatus());
 			int num = pst.executeUpdate();
 			if (num!=0) {
 				System.out.println("scheduled");
@@ -83,7 +83,6 @@ public class ScheduleDaoImpl implements IsaDao<Schedule, SearchCriteriaImpl> {
 		con=ConnectionFactory.getDBConne();
 		try {
 			pst= con.prepareStatement(delete);
-			schedule = new Schedule();
 			pst.setInt(1, schedule.getScheduleId());
 			int num = pst.executeUpdate();
 			if (num!=0) {
